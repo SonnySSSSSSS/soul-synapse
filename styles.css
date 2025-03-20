@@ -199,6 +199,36 @@ section:nth-child(even) {
     border-bottom: none;
 }
 
+/* Pattern List Styling */
+.pattern-list {
+    margin: 2rem 0 3rem;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.pattern-list li {
+    position: relative;
+    padding: 1rem 0 1rem 3rem;
+    border-left: 2px solid var(--color-primary);
+    margin-left: 1rem;
+}
+
+.pattern-list li:before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.pattern-list li:last-child {
+    border-color: transparent;
+}
+
 /* Offering Cards */
 .offering-card {
     background-color: white;
@@ -300,6 +330,16 @@ footer {
     text-align: center;
 }
 
+/* Enhanced Typography for Phrases */
+strong {
+    color: var(--color-primary-dark);
+}
+
+.what-we-do strong {
+    border-bottom: 1px dotted var(--color-primary);
+    padding-bottom: 2px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     html {
@@ -316,6 +356,10 @@ footer {
     
     header {
         padding: 7rem 0 5rem;
+    }
+    
+    .pattern-list li {
+        padding-left: 2.5rem;
     }
 }
 
