@@ -395,4 +395,86 @@ ol.custom-list li::before {
     padding: 1em 0;
 }
 
+/* --- Glossary Link Styling --- */
+a.glossary-link {
+    /* Uses the general link style already defined, but we ensure */
+    /* the underline is appropriate and add a specific cursor */
+    border-bottom: 1px dotted #8B3A3A; /* Muted Deep Red dotted underline */
+    cursor: help; /* Use a 'help' cursor to indicate interaction */
+    /* Ensure hover/focus uses Gold as per general link style */
+}
+
+a.glossary-link:hover,
+a.glossary-link:focus {
+    border-bottom-style: solid; /* Make underline solid on hover/focus */
+    border-bottom-color: #C2A86D; /* Gold */
+    color: #C2A86D; /* Gold text */
+}
+
+
+/* --- Glossary Popup Bubble Styling --- */
+.glossary-popup {
+    position: absolute; /* Positioned relative to the page / nearest positioned ancestor */
+    display: none; /* Hidden by default */
+    background-color: #F5F4F2; /* Bone White background */
+    color: #1C1C1E; /* Charcoal Black text */
+    border: 1px solid #D6CDBB; /* Subtle Desaturated Gold/Aged Border */
+    border-radius: 5px;
+    padding: 10px 15px;
+    box-shadow: 0 3px 10px rgba(28, 28, 30, 0.15); /* Slightly stronger shadow */
+    max-width: 350px; /* Adjust max width as needed */
+    font-size: 0.9em; /* Slightly smaller text in popup */
+    line-height: 1.5;
+    z-index: 100; /* Ensure it appears above other content */
+    opacity: 0; /* Start transparent for fade-in */
+    transition: opacity 0.2s ease-in-out; /* Fade transition */
+}
+
+.glossary-popup.visible {
+    display: block; /* Show the popup */
+    opacity: 1; /* Make it opaque */
+}
+
+/* Optional: Style for a close button inside the popup */
+.glossary-popup .close-popup {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    line-height: 1;
+    cursor: pointer;
+    color: #8B3A3A; /* Muted Deep Red accent */
+    padding: 0;
+}
+.glossary-popup .close-popup:hover {
+    color: #1C1C1E; /* Charcoal on hover */
+}
+
+/* Optional: Pointer/Tail for the bubble (points downwards) */
+/* Adjust positioning/colors as needed */
+.glossary-popup::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position arrow at the top */
+    left: 50%; /* Center the arrow */
+    margin-left: -8px; /* Adjust horizontal position */
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #D6CDBB transparent; /* Arrow color (matches border) */
+}
+
+.glossary-popup::before { /* Inner part of arrow to match background */
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -7px; /* Slightly smaller */
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #F5F4F2 transparent; /* Arrow inner color (matches background) */
+    z-index: 1; /* Ensure it's above the border arrow */
+}
+
 /* ----- END OF MERGED STYLING CODE BLOCK - UPDATED PALETTE ----- */
