@@ -1,0 +1,398 @@
+/* ----- FULL MERGED STYLING CODE BLOCK - UPDATED WITH SPECIFIC PALETTE ----- */
+
+/* === Google Fonts Import (Kept) === */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@400;700&display=swap');
+
+/* === Basic Reset / Box Sizing (Kept) === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Base Styles (Using Specified Palette) === */
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.65;
+    color: #1C1C1E; /* Charcoal Black - Main Text */
+    font-size: 17px;
+}
+
+body {
+    background-color: #F5F4F2; /* Bone White - Main Background/Field */
+}
+
+/* === Layout Containers (Using Specified Palette) === */
+.page-container {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 30px 40px;
+    background-color: #F5F4F2; /* Bone White - Container matches body for parchment feel */
+    border: 1px solid #D6CDBB; /* Subtle Desaturated Gold/Aged Border */
+    box-shadow: 0 2px 8px rgba(28, 28, 30, 0.08); /* Soft shadow based on Charcoal */
+    border-radius: 3px;
+}
+
+.main-layout {
+    display: flex;
+    gap: 40px;
+}
+
+/* === Header (Using Specified Palette) === */
+.page-header {
+    text-align: center;
+    padding: 25px 0;
+    border-bottom: 1px solid #D6CDBB; /* Subtle Desaturated Gold/Aged Border */
+    margin-bottom: 30px;
+}
+
+.page-header h1 { /* Title Cluster h1 */
+    font-family: 'Lora', serif;
+    color: #1C1C1E; /* Charcoal Black - Main Title */
+    font-size: 2.8em;
+    font-weight: 700;
+}
+
+.page-header h2 { /* Title Cluster h2 / Subtitle */
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.3em;
+    font-style: italic;
+    color: #666666; /* Lighter shade of Charcoal for subtitle */
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+/* Specific classes if needed */
+.title-cluster { }
+
+.secondary-words {
+    display: block;
+    font-size: 0.85em;
+    color: #7F7F7F; /* Lighter shade of Charcoal */
+    margin-top: 8px;
+}
+
+/* === Sidebar (Using Specified Palette) === */
+.sidebar {
+    flex: 0 0 260px;
+    border-right: 1px solid #D6CDBB; /* Subtle Desaturated Gold/Aged Border */
+    padding-right: 30px;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.sidebar h3, .sidebar h4 {
+    font-family: 'Lora', serif;
+    color: #C2A86D; /* Ancient Gold */
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 1.3em;
+}
+.sidebar h4 {
+    font-size: 1.1em;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.sidebar nav li {
+    margin-bottom: 10px;
+    padding-left: 8px;
+    border-left: 3px solid transparent;
+    transition: border-left 0.3s ease, background-color 0.3s ease;
+}
+
+.sidebar nav li:hover {
+    border-left: 3px solid #C2A86D; /* Ancient Gold border on hover */
+    background-color: rgba(194, 168, 109, 0.08); /* Very faint Gold background */
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: #1C1C1E; /* Charcoal Black text */
+    border-bottom: none;
+    display: inline-block;
+    padding: 2px 0;
+    transition: color 0.3s ease;
+}
+
+.sidebar nav a:hover {
+    text-decoration: none;
+    color: #C2A86D; /* Ancient Gold text on hover */
+    border-bottom: none;
+}
+
+/* Sidebar Controls */
+.sidebar-controls {
+    margin-top: 25px;
+    font-size: 0.9em;
+}
+.sidebar-controls label {
+    display: block;
+    margin-bottom: 10px;
+    color: #1C1C1E; /* Charcoal Black */
+}
+.sidebar-controls button {
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #F5F4F2; /* Bone White bg */
+    color: #1C1C1E; /* Charcoal Black text */
+    border: 1px solid #D6CDBB; /* Subtle Desaturated Gold/Aged Border */
+    border-radius: 3px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.sidebar-controls button:hover {
+    background-color: rgba(194, 168, 109, 0.08); /* Very faint Gold background */
+    border-color: #C2A86D; /* Ancient Gold border */
+    color: #C2A86D; /* Ancient Gold text */
+}
+
+/* === Content Area (Using Specified Palette) === */
+.content-area {
+    flex: 1;
+    padding-bottom: 50px;
+}
+
+/* Headings in Content Area */
+.content-area h2 {
+    font-family: 'Lora', serif;
+    color: #C2A86D; /* Ancient Gold */
+    border-bottom: 1px solid #D6CDBB; /* Subtle Desaturated Gold/Aged Border */
+    padding-bottom: 10px;
+    margin-top: 45px;
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.content-area h3 {
+    font-family: 'Lora', serif;
+    color: #1C1C1E; /* Charcoal Black for H3 */
+    border-bottom: 1px dotted #AEAEAE; /* Dotted lighter Charcoal/Grey border */
+    padding-bottom: 8px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+.content-area h4 {
+    font-family: 'Lora', serif;
+    color: #1C1C1E; /* Charcoal Black */
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-size: 1.3em;
+    font-weight: 700;
+    border-bottom: none;
+}
+
+/* Content text */
+.content-area p {
+    margin-bottom: 1.2em;
+}
+
+/* Lists */
+.content-area ul, .content-area ol {
+    margin-left: 2.5em;
+    margin-bottom: 1.2em;
+}
+.content-area li {
+    margin-bottom: 0.5em;
+}
+
+/* Blockquotes */
+.content-area blockquote,
+blockquote {
+    border-left: 4px solid #C2A86D;  /* Ancient Gold accent line */
+    margin: 2em 10%;
+    padding: 1em 2em;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #3a3a3e;                /* Slightly lighter Charcoal */
+    background-color: rgba(194, 168, 109, 0.05); /* Very faint Gold background */
+    border-radius: 3px;
+    line-height: 1.7;
+}
+.content-area blockquote p:last-child,
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* === Footer (Using Specified Palette) === */
+.page-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid #D6CDBB; /* Subtle Desaturated Gold/Aged Border */
+    font-size: 0.85em;
+    color: #666666; /* Lighter shade of Charcoal */
+}
+
+/* === Specific Elements (Glossary, Expandable - Using Specified Palette) === */
+
+/* Glossary Link - Styled like general links now */
+.glossary-link {
+    cursor: pointer;
+    /* Inherits general 'a' styles */
+}
+
+/* Expandable Sections */
+.expandable-section {
+    border-left: 3px solid #C2A86D; /* Ancient Gold border */
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding: 0.5em 1.5em 1.5em 1.5em;
+    margin-left: 1em;
+    background-color: rgba(194, 168, 109, 0.05); /* Very subtle Gold bg tint */
+    border-radius: 3px;
+}
+
+.expand-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: #1C1C1E; /* Charcoal Black */
+    font-weight: bold;
+    margin-bottom: 0.8em;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    border-bottom: 1px dotted #C2A86D; /* Dotted gold underline */
+}
+.expand-toggle:hover {
+    text-decoration: none;
+    color: #C2A86D; /* Ancient Gold text on hover */
+    border-bottom-color: #C2A86D; /* Solid gold underline on hover? Or keep dotted? */
+}
+
+/* Kept: Styles for expand/collapse animation */
+.expand-content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.8s ease-in-out, opacity 0.8s ease-in-out, padding-top 0.8s ease-in-out;
+    padding-top: 0;
+}
+.expand-content.expanded {
+    max-height: 150vh;
+    opacity: 1;
+    padding-top: 0.8em;
+}
+.expand-content.expanded[hidden] {
+    display: block !important;
+}
+
+/* Citations */
+sup {
+    font-size: 0.7em;
+    vertical-align: super;
+    padding-left: 1px;
+    opacity: 0.8; /* Slightly less prominent */
+    color: #8B3A3A; /* Muted Deep Red accent for citations */
+}
+
+/* === General link styling (Using Specified Palette) === */
+a {
+    color: #1C1C1E;             /* Charcoal Black link text */
+    text-decoration: none;
+    border-bottom: 1px solid #8B3A3A; /* Muted Deep Red subtle underline */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    padding-bottom: 2px;
+}
+a:hover, a:focus {
+    color: #C2A86D;             /* Ancient Gold on hover */
+    border-bottom-color: #C2A86D; /* Underline changes to Gold */
+    outline: none;
+}
+/* Ensure specific links override correctly */
+.sidebar nav a, .sidebar nav a:hover, .sidebar nav a:focus {
+    border-bottom: none; /* Sidebar links have no underline */
+}
+.expand-toggle, .expand-toggle:hover, .expand-toggle:focus {
+    /* Uses its specific styles defined above */
+    border-bottom: 1px dotted #C2A86D; /* Reiterate toggle border */
+}
+.expand-toggle:hover, .expand-toggle:focus {
+     border-bottom-color: #C2A86D; /* Ensure hover border color is gold */
+}
+
+
+/* === NEW: Drop Caps (Using Specified Palette) === */
+p.has-dropcap::first-letter {
+    color: #C2A86D;              /* Ancient Gold */
+    font-family: 'Lora', serif;
+    font-size: 4.5em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.7;
+    margin-top: 0.1em;
+    margin-right: 0.15em;
+    margin-bottom: -0.1em;
+    padding: 0.05em;
+}
+
+/* === NEW: Custom List Styles (Using Specified Palette) === */
+ul.custom-list {
+    list-style: none;
+    padding-left: 1.5em;
+}
+ul.custom-list li {
+    position: relative;
+    padding-left: 1.8em;
+    margin-bottom: 0.7em;
+}
+ul.custom-list li::before {
+    content: '✧'; /* Star symbol - adjust if needed */
+    color: #C2A86D; /* Ancient Gold */
+    font-size: 1.3em;
+    position: absolute;
+    left: 0;
+    top: -0.1em;
+    line-height: 1;
+}
+
+ol.custom-list {
+    list-style: none;
+    counter-reset: custom-counter;
+    padding-left: 1.5em;
+}
+ol.custom-list li {
+    position: relative;
+    padding-left: 1.8em;
+    margin-bottom: 0.7em;
+    counter-increment: custom-counter;
+}
+ol.custom-list li::before {
+    content: counter(custom-counter);
+    color: #C2A86D; /* Ancient Gold */
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+    top: -0.05em;
+    width: 1.2em;
+    text-align: right;
+    margin-right: 0.6em;
+    font-size: 1em;
+}
+
+/* === NEW: General Content Area Styling (Example Width Limiter) === */
+.main-content-wrapper {
+    max-width: 850px;
+    /* margin: 2em auto; */ /* Centering might not be needed with flex parent */
+    padding: 1em 0;
+}
+
+/* ----- END OF MERGED STYLING CODE BLOCK - UPDATED PALETTE ----- */
