@@ -477,4 +477,282 @@ a.glossary-link:focus {
     z-index: 1; /* Ensure it's above the border arrow */
 }
 
+/* === Background Styles Start === */
+
+/* Style for the VERY OUTERMOST page background */
+body {
+    background-image: url('dark.png'); /* Path to your dark image */
+    background-repeat: repeat; /* Tile horizontally and vertically */
+    background-color: #333; /* Fallback dark gray */
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for ALL visible content sections - these get the LIGHT background */
+/* Grouping the main container, layout container, header, sidebar, content, and footer */
+.page-container,
+.main-layout,
+.page-header,
+.sidebar,
+.content-area,
+.page-footer {
+    background-image: url('light.png'); /* Path to your light image */
+    background-repeat: repeat; /* Tile horizontally and vertically */
+
+    /* Crucial: Add a solid background color */
+    background-color: #fff; /* Example light color (white) */
+}
+
+/* Apply padding ONLY to elements directly containing content */
+.page-header,
+.sidebar,
+.content-area,
+.page-footer {
+    padding: 20px; /* Adjust as needed */
+}
+
+/* Ensure text is readable on the light background in ALL relevant areas */
+.page-header h1,
+.page-header h2,
+.sidebar h3,
+.sidebar li,
+.sidebar label,
+.content-area p,
+.content-area h1,
+.content-area h2,
+.content-area h3,
+.content-area li,
+.page-footer p { /* Added footer paragraph */
+   color: #000; /* Example: Black text */
+   line-height: 1.6;
+}
+
+/* Specific style for sidebar links for better readability */
+.sidebar a {
+    color: #1a0dab; /* Example: A darker blue/purple for links */
+    text-decoration: none; /* Optional: remove underline */
+}
+
+.sidebar a:hover {
+    text-decoration: underline; /* Optional: add underline on hover */
+}
+
+/* Styles for the macOS-style Dock */
+.macos-dock {
+    position: fixed; /* Keeps it fixed at the bottom */
+    bottom: 15px;    /* Slightly more space from the bottom */
+    left: 50%;       /* Start at the horizontal center */
+    transform: translateX(-50%); /* Center it accurately */
+    background-color: rgba(200, 200, 200, 0.8); /* Semi-transparent background */
+    padding: 10px 15px; /* Padding top/bottom and left/right */
+    border-radius: 18px; /* Slightly more rounded corners */
+    display: flex;     /* Aligns items HORIZONTALLY */
+    align-items: flex-end; /* Aligns items vertically to their bottom edge */
+    gap: 18px;         /* Slightly more space between icons */
+    z-index: 1000;     /* Ensure it's above other content */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Optional: slightly stronger shadow */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: subtle border */
+}
+
+.dock-item {
+    /* Container for each icon/link */
+    text-align: center; /* Centers content (icon and text) within the item */
+}
+
+.dock-item a {
+    display: block; /* Make link take up space */
+    text-decoration: none;
+    color: #111; /* Darker text color for better contrast */
+}
+
+.dock-item img {
+    width: 55px;  /* Slightly larger icon size */
+    height: 55px; /* Slightly larger icon size */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px; /* Space between icon and text */
+    transition: transform 0.15s ease-out; /* Slightly faster transition */
+}
+
+/* Hover effect */
+.dock-item:hover img {
+    transform: scale(1.6) translateY(-12px); /* Slightly more scale and lift */
+}
+
+/* Span is hidden, but keeping the rule doesn't hurt if you used Method 2 */
+/* If you used Method 1 (deleted spans), you don't strictly need this rule */
+.dock-item span {
+     display: none; /* Hides the text label if it exists */
+     /* Original styles if you were showing them: */
+     /* font-size: 11px; */
+     /* font-weight: bold; */
+     /* display: block; */
+     /* margin-top: 2px; */
+}
+/* End of Dock Styles */
+
+body {
+    background-image: url('dark.png'); 
+    background-repeat: repeat;
+    background-color: #333; 
+    /* Make background fixed */
+    background-attachment: fixed; 
+    /* Ensure background covers the viewport */
+    background-size: cover; 
+    margin: 0;
+    padding: 0;
+}
+
+.content-area { /* Or .page-container */
+    background-color: #fff; /* Base light color */
+    background-image: 
+        url('veils/transparent-runes.png'), /* Top layer */
+        url('veils/watercolor-wash.png'), /* Middle layer */
+        url('light.png'); /* Bottom layer (your tile) */
+    background-repeat: repeat-x, repeat-y, repeat; /* How each layer repeats */
+    background-position: center center, top left, center center; /* Position each layer */
+    /* Add other styles like padding */
+    padding: 20px; 
+}
+
+.page-header h1 {
+    background-image: url('images/sigil.png');
+    background-repeat: no-repeat;
+    background-position: center top; /* Adjust as needed */
+    background-size: contain; /* Adjust as needed */
+    padding-top: 60px; /* Add space for the image above */
+    /* Other h1 styles */
+}
+
+.incantation {
+    font-family: 'IM Fell English', serif; /* Example specific font */
+    font-size: 1.2em; /* Slightly larger */
+    font-style: italic; /* Example style */
+    text-align: center;
+    letter-spacing: 1px; /* More spacing */
+    margin: 3em auto; /* More vertical space */
+    max-width: 600px; /* Constrain width */
+    color: #some_color; /* Distinct color */
+    /* Subtle glow effect */
+    text-shadow: 0 0 8px rgba(200, 200, 150, 0.5); /* Adjust color/blur */
+}
+
+/* Example for buttons like the 'Expand' buttons */
+.expand-toggle {
+    /* Existing styles */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.expand-toggle:hover {
+    transform: scale(1.05); /* Slightly larger */
+    box-shadow: 0 0 15px rgba(255, 255, 200, 0.6); /* Example glow */
+    background-color: #slightly_different_color; /* Subtle color shift */
+}
+
+/* Example for Nav Links (already have icon hover) */
+/* Could add hover to the sidebar links */
+#table-of-contents a {
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+#table-of-contents a:hover {
+    color: #active_color; /* Change color */
+    padding-left: 5px; /* Subtle indent */
+    /* text-shadow: 0 0 5px rgba(255, 255, 200, 0.4); */ /* Optional subtle glow */
+}
+
+section::after { /* Add divider after each section */
+    content: ''; /* Needs content, even if empty */
+    display: block;
+    width: 50px; /* Adjust size */
+    height: 50px; /* Adjust size */
+    background-image: url('icons/section-glyph.png'); /* Path to your glyph */
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 2em auto; /* Center and add space */
+}
+/* You might need different glyphs per section, requiring more specific selectors */
+section#part-ii-awareness::after { 
+    background-image: url('icons/awareness-glyph.png'); 
+}
+
+/* Style first letter of first paragraph in each main section */
+section > p:first-of-type::first-letter { 
+    font-family: 'IM Fell English', serif; /* Or a specific display font */
+    font-size: 4em; /* Make it large */
+    float: left; /* Float it left */
+    margin-right: 0.1em; /* Space around it */
+    line-height: 0.8; /* Adjust line height */
+    color: #some_ornate_color; /* Ornate color */
+    /* Add other styling */
+}
+
+body { /* Or .page-container */
+    /* Combine gradient with texture if desired */
+     background: 
+        linear-gradient(to bottom, 
+            rgba(20, 10, 30, 0.8), /* Start color (e.g., deep purple) */
+            rgba(50, 50, 80, 0.8), /* Mid color */
+            rgba(10, 10, 10, 0.8)  /* End color (e.g., near black) */
+        ),
+        url('dark.png'); /* Your texture underneath */
+    background-repeat: repeat, repeat; /* Texture repeats */
+    background-attachment: fixed, fixed; /* Keep both fixed for parallax */
+    background-size: cover, auto; /* Cover with gradient, tile texture */
+     /* Rest of body styles */
+}
+
+/* --- Styling for the Expandable Section Buttons --- */
+
+button.expand-toggle {
+    /* Basic appearance */
+    background-color: rgba(255, 255, 255, 0.1); /* Example: Slightly transparent light background */
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Example: Subtle dark border */
+    color: #333333; /* --- Darker text color for readability --- */
+    padding: 10px 18px; /* --- Add more padding (Top/Bottom, Left/Right) --- */
+    font-size: 0.95em; /* Adjust font size if needed */
+    font-weight: bold;
+    text-align: left; /* Align text to the left */
+    cursor: pointer;
+    border-radius: 5px; /* Optional: slightly rounded corners */
+    margin-top: 1em; /* Space above the button */
+    margin-bottom: 0.5em; /* Space below the button */
+    display: block; /* Make it block level */
+    width: auto; /* Adjust width automatically */
+    max-width: 90%; /* Prevent it getting too wide */
+
+    /* --- Smooth transition for hover/focus effects --- */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Cleaner Hover and Focus Effects --- */
+button.expand-toggle:hover,
+button.expand-toggle:focus {
+    background-color: rgba(0, 0, 0, 0.1); /* Example: Subtle dark background on hover/focus */
+    border-color: rgba(0, 0, 0, 0.6); /* Example: Slightly darker border */
+    color: #000000; /* --- Ensure text remains dark or gets darker --- */
+    
+    /* --- Remove or replace the previous 'radiance' effect --- */
+    /* If 'radiance' was a box-shadow, ensure it's removed or changed: */
+    box-shadow: none; /* Remove any glow */ 
+    
+    /* Optional: Add a very subtle inner shadow instead? */
+    /* box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); */
+
+    outline: none; /* Remove default browser focus outline if adding custom border/background */
+}
+
+/* Optional: Style for when the section is expanded */
+button.expand-toggle[aria-expanded="true"] {
+     /* background-color: rgba(0, 0, 0, 0.15); */ /* Slightly different background when open */
+     /* border-color: rgba(0, 0, 0, 0.7); */
+}
+
+/* --- End of Expandable Button Styles --- */
+
+
+/* --- Ensure your other existing styles are below or above this block --- */
+
+/* === Background Styles End === */
+
 /* ----- END OF MERGED STYLING CODE BLOCK - UPDATED PALETTE ----- */
