@@ -199,10 +199,10 @@ body {
 /* --- Responsive Adjustments --- */
 @media (max-width: 600px) {
     .overlay-content h1 {
-        font-size: 2rem;
+        font-size: 4rem;
     }
     .overlay-content .tagline {
-        font-size: 1.2rem;
+        font-size: 2.4rem;
     }
     .overlay-content {
         top: 30%;
@@ -220,8 +220,8 @@ body {
          padding-bottom: 80px;
     }
     #path-prompt {
-        bottom: 65px; /* Adjust position above smaller dock */
-        font-size: 0.8rem;
+        bottom: 110px; /* Adjust position above smaller dock */
+        font-size: 1.9rem;
     }
     /* Adjust layer animation speeds - SLOWED DOWN */
     .layer-sky { animation-duration: 105s; }

@@ -2,24 +2,24 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	// --- START: Interactive Dock Text Code ---
 
-// Make sure this runs after the DOM is loaded.
+// Ensure this runs after the DOM is loaded.
 // If you ALREADY have a 'DOMContentLoaded' listener in your script.js,
 // put the code INSIDE that existing listener.
-// If not, you can add this wrapper:
 document.addEventListener('DOMContentLoaded', () => {
 
     // Get references to the elements needed for this feature
     const overlayTitle = document.getElementById('overlay-title');
     const overlayTagline = document.getElementById('overlay-tagline');
-    const dock = document.querySelector('.macos-dock');
+    const dock = document.querySelector('.macos-dock'); // Find the dock container
 
+    // --- Error Checking ---
     // Check if the necessary elements exist before proceeding
     if (!overlayTitle || !overlayTagline || !dock) {
-        console.warn("Interactive text elements (overlay title/tagline or dock) not found. Feature disabled.");
+        console.error("Interactive text elements (overlay title/tagline or dock) not found. Feature disabled.");
         return; // Stop this specific feature if elements are missing
     }
 
-    const dockLinks = dock.querySelectorAll('a'); // Select all links within the dock
+    const dockLinks = dock.querySelectorAll('a'); // Select all links *within* the dock
 
     if (dockLinks.length === 0) {
         console.warn("No links found within the dock for interactive text. Feature disabled.");
@@ -29,18 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Store default text (make sure these elements exist first)
     const defaultTitle = overlayTitle.textContent;
     const defaultTagline = overlayTagline.textContent;
+    // console.log("Default text stored:", defaultTitle, defaultTagline); // Debug log
 
     // Add hover listeners to each link in the dock
     dockLinks.forEach(link => {
         link.addEventListener('mouseover', (event) => {
+            // console.log("Hovering over:", link.getAttribute('data-title')); // Debug log
             const title = link.getAttribute('data-title');
             const tagline = link.getAttribute('data-tagline');
 
             // Update text only if the attribute exists
-            if (title !== null) { // Check for null explicitly
+            if (title !== null) {
                 overlayTitle.textContent = title;
             }
-            if (tagline !== null) { // Check for null explicitly
+            if (tagline !== null) {
                 overlayTagline.textContent = tagline;
             } else {
                  overlayTagline.textContent = ''; // Clear tagline if attribute is missing
@@ -49,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add listener to the dock container to reset text when mouse leaves
+    // Using 'mouseleave' is generally better than 'mouseout' here
     dock.addEventListener('mouseleave', () => {
+        // console.log("Mouse left dock, resetting text."); // Debug log
         // Only reset if the elements were found initially
         if (overlayTitle) {
              overlayTitle.textContent = defaultTitle;
@@ -62,9 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Optional: Log success for this specific feature
     console.log("Interactive dock text feature initialized.");
 
-}); // End of the DOMContentLoaded listener (if you added it)
+}); // End of the DOMContentLoaded listener
 
 // --- END: Interactive Dock Text Code ---
+
     // Expand/Collapse Functionality
     const allToggles = document.querySelectorAll('.expand-toggle'); // Define allToggles
 
