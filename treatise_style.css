@@ -205,8 +205,8 @@ body {
     .layer-firefly {
         /* Apply BOTH animations with adjusted scroll duration */
         animation:
-            scrollHorizontal 38s linear infinite, /* Scroll speed adjusted */
-            pulseOpacity 3s ease-in-out infinite alternate; /* Pulse speed remains same */
+            scrollHorizontal 76s linear infinite, /* Scroll speed adjusted */
+            pulseOpacity 6s ease-in-out infinite alternate; /* Pulse speed remains same */
     }
 }
 
