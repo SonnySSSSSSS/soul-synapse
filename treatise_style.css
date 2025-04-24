@@ -198,14 +198,14 @@ body {
          padding-bottom: 80px;
     }
     /* Adjust animation speeds - SLOWED DOWN */
-    .layer-sky { animation-duration: 105s; }
-    .layer-town { animation-duration: 75s; }
-    .layer-hills { animation-duration: 53s; }
+    .layer-sky { animation-duration: 210s; }
+    .layer-town { animation-duration: 150s; }
+    .layer-hills { animation-duration: 106s; }
     /* Adjust firefly scroll speed for mobile */
     .layer-firefly {
         /* Apply BOTH animations with adjusted scroll duration */
         animation:
-            scrollHorizontal 76s linear infinite, /* Scroll speed adjusted */
+            scrollHorizontal 152s linear infinite, /* Scroll speed adjusted */
             pulseOpacity 6s ease-in-out infinite alternate; /* Pulse speed remains same */
     }
 }
