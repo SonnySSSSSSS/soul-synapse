@@ -16,7 +16,7 @@ body {
 }
 
 /* --- Parallax Styles --- */
-/* Container is now just a holder, doesn't need perspective */
+/* Container is now just a holder */
 .parallax-container {
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
@@ -27,34 +27,31 @@ body {
     z-index: 1; /* Behind overlay and dock */
 }
 
-/* Remove styles related to the wrapper divs' 3D transforms */
+/* Wrapper divs for positioning and z-index */
 .layer-wrap {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* No transform-style or translateZ needed here */
 }
 
 /* Assign z-index directly to wrappers */
-.layer-sky-wrap { z-index: 1; }
+.layer-sky-wrap { z-index: 1; }     /* Back */
 .layer-town-wrap { z-index: 2; }
 .layer-hills-wrap { z-index: 3; }
+.layer-firefly-wrap { z-index: 4; } /* Front */
 
 /* Base styles for the actual layers INSIDE the wrappers */
 .parallax-layer {
     position: absolute;
     top: 0;
     left: 0;
-    /* Make width much larger than screen to allow for scrolling */
-    /* Width should be at least screen width + image width */
-    width: 200%; /* Example: double screen width, adjust as needed */
+    width: 200%; /* Double width for seamless loop */
     height: 100%;
     background-position: 0 bottom; /* Start at left edge, align to bottom */
     background-size: auto 100%; /* Keep aspect ratio, fill height */
     background-repeat: repeat-x; /* Repeat horizontally */
-
     /* Add animation */
     animation: scrollHorizontal linear infinite;
 }
@@ -63,20 +60,25 @@ body {
 /* Ensure image paths are correct */
 .layer-sky {
     background-image: url('./sky_layer1.png');
-    /* Slower animation duration = slower speed */
-    animation-duration: 60s; /* Example duration */
+    animation-duration: 60s; /* Slowest */
 }
 
 .layer-town {
     background-image: url('./town_layer2.png');
-    /* Medium animation duration */
-    animation-duration: 40s; /* Example duration */
+    animation-duration: 40s; /* Medium */
 }
 
 .layer-hills {
     background-image: url('./hills_layer3.png');
-    /* Faster animation duration = faster speed */
-    animation-duration: 25s; /* Example duration */
+    animation-duration: 25s; /* Faster */
+}
+
+/* Firefly Layer Style */
+.layer-firefly {
+    background-image: url('./firefly_layer4.png'); /* Check filename */
+    animation-duration: 15s; /* Fastest */
+    /* Optional: Adjust background-position if fireflies shouldn't be bottom-aligned */
+    /* background-position: 0 0; */ /* Example: Align to top-left */
 }
 
 /* --- Keyframes for Horizontal Scrolling --- */
@@ -85,9 +87,7 @@ body {
         transform: translateX(0);
     }
     100% {
-        /* Move left by exactly half the element's width (since width is 200%) */
-        /* This creates a seamless loop with repeat-x */
-        transform: translateX(-50%);
+        transform: translateX(-50%); /* Move left by half the element's width */
     }
 }
 /* --- End Parallax Styles --- */
@@ -99,7 +99,7 @@ body {
     top: 35%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10; /* Above parallax */
+    z-index: 10; /* Ensure this is higher than the highest layer-wrap z-index (which is 4) */
     text-align: center;
     width: 90%;
     max-width: 800px;
@@ -128,7 +128,7 @@ body {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000; /* Above everything */
+    z-index: 1000; /* Ensure dock is above everything */
     background-color: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
     padding: 10px 15px;
@@ -184,5 +184,6 @@ body {
     .layer-sky { animation-duration: 70s; }
     .layer-town { animation-duration: 50s; }
     .layer-hills { animation-duration: 35s; }
+    .layer-firefly { animation-duration: 25s; } /* Adjust fastest speed too */
 }
 
