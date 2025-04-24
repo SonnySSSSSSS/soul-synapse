@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 	
-	// --- START: Interactive Dock Text Code ---
-
-// Ensure this runs after the DOM is loaded.
-// If you ALREADY have a 'DOMContentLoaded' listener in your script.js,
-// put the code INSIDE that existing listener.
-document.addEventListener('DOMContentLoaded', () => {
 
     // Get references to the elements needed for this feature
     const overlayTitle = document.getElementById('overlay-title');
