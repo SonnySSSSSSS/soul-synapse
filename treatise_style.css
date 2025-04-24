@@ -1,37 +1,97 @@
 /* --- General Body and HTML --- */
 body, html {
-    height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #f5f5f5;
-    background-color: #151515;
-    /* Add padding at the bottom to make space for the fixed dock */
-    /* Adjust 100px based on the actual height of your dock + desired gap */
+    background-color: #151515; /* Fallback background */
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
+}
+
+/* Add padding at the bottom to make space for the fixed dock */
+/* Adjust 100px based on the actual height of your dock + desired gap */
+body {
     padding-bottom: 100px;
 }
 
-/* --- Background Styling --- */
-.background {
-    background: url('./background.png') repeat, linear-gradient(135deg, #151515, #282828, #151515);
-    position: fixed;
+/* --- New Parallax Styles --- */
+
+/* Container establishes the 3D perspective and scrolling context */
+.parallax-container {
+    height: 100vh; /* Takes full viewport height initially */
+    overflow-x: hidden;
+    overflow-y: auto;   /* Allows this container to scroll internally if needed, but usually body scroll is used */
+    perspective: 1px;   /* Adjust for more/less parallax effect (smaller = more) */
+    position: relative; /* Crucial for positioning layers */
+    /* If you want the parallax fixed behind EVERYTHING, uncomment these: */
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; */
+}
+
+/* Wrapper helps manage 3D transforms and total scroll height */
+.parallax-wrapper {
+    position: relative; /* Changed from absolute for simpler content flow */
     width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.3; /* subtle, professional look */
+    height: 100vh; /* Match container height for initial view */
+    transform-style: preserve-3d; /* Essential for children's 3D transforms */
+}
+
+/* Base styles for all parallax layers */
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center bottom; /* Align images to the bottom */
+    background-size: cover;
+    background-repeat: no-repeat; /* Ensure images don't tile by default */
+}
+
+/* Individual layer styling */
+/* Adjust translateZ and scale values to fine-tune the effect */
+/* scale = 1 + (translateZ / -perspective) */
+/* Ensure image paths are correct relative to the CSS file location */
+
+.layer-sky {
+    background-image: url('./sky_layer1.jpg'); /* FURTHEST BACK */
+    transform: translateZ(-2px) scale(3);
+    z-index: 1; /* Stacking order */
+}
+
+.layer-town {
+    background-image: url('./town_layer2.jpg'); /* MIDDLE */
+    transform: translateZ(-1px) scale(2);
+    z-index: 2; /* Stacking order */
+}
+
+.layer-hills {
+    background-image: url('./hills_layer3.jpg'); /* CLOSEST */
+    transform: translateZ(0px) scale(1);
+    z-index: 3; /* Stacking order */
 }
 
 /* --- Content Area Styling --- */
+/* Adjustments to make content appear AFTER the parallax */
 .content {
     text-align: center;
-    padding-top: 100px; /* Adjust as needed for spacing below potential top elements */
-    /* No padding-bottom needed here; handled by body */
+    position: relative; /* Needed for z-index stacking */
+    z-index: 10; /* Ensure content is above parallax layers */
+    background-color: #151515; /* Background to cover parallax as it scrolls */
+    padding-top: 50px; /* Add some top padding within the content */
+    padding-bottom: 50px; /* Add some bottom padding */
+    /* This margin pushes the content below the initial 100vh parallax view */
+    margin-top: 100vh;
 }
 
 .central-image {
     width: 250px; /* Adjust size as needed */
-    max-width: 80%; /* Ensure it's responsive on smaller screens */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 80%;
+    height: auto;
     margin: 20px auto;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
@@ -40,80 +100,76 @@ body, html {
     font-size: 1.4rem;
     font-style: italic;
     margin-top: 20px;
-    padding: 0 15px; /* Add some horizontal padding */
+    padding: 0 15px;
 }
 
 h1 {
     font-size: 2rem;
     text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-    margin-bottom: 30px; /* Add some space below heading */
+    margin-bottom: 30px;
 }
 
-/* --- Video Container Styling (Consolidated) --- */
+/* --- Video Container Styling --- */
 .video-container {
-   position: relative; /* For positioning the iframe */
+   position: relative;
    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-   height: 0; /* Collapses the div, padding-bottom provides height */
-   overflow: hidden; /* Keeps iframe corners rounded if container is rounded */
-   margin: 40px auto; /* Spacing above/below and centers */
-   max-width: 800px; /* Maximum width */
-   width: 90%; /* Responsive width */
+   height: 0;
+   overflow: hidden;
+   margin: 40px auto;
+   max-width: 800px;
+   width: 90%;
    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-   border-radius: 12px; /* Rounded corners for the container */
+   border-radius: 12px;
    background-color: #000; /* Optional: Background while video loads */
 }
 
 .video-container iframe {
-   position: absolute; /* Position relative to .video-container */
+   position: absolute;
    top: 0;
    left: 0;
-   width: 100%; /* Fill the container width */
-   height: 100%; /* Fill the container height */
-   border: none; /* Remove default iframe border */
+   width: 100%;
+   height: 100%;
+   border: none;
 }
 
 /* --- macOS Dock Styling (Fixed Position) --- */
 .macos-dock {
-    position: fixed;   /* Keep it fixed to the viewport */
-    bottom: 20px;      /* Space from the bottom edge */
-    left: 50%;         /* Align left edge to the center */
-    transform: translateX(-50%); /* Shift left by half its own width to center */
-    z-index: 1000;     /* Ensure it's above other page content */
-
-    /* Visual Styles */
-    background-color: rgba(255,255,255,0.2); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    padding: 10px 15px; /* Inner spacing */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Drop shadow */
-
-    /* Layout for Icons */
-    display: flex; /* Arrange icons horizontally */
-    justify-content: center; /* Center icons if container is wider */
-    align-items: center; /* Vertically center icons */
-    gap: 20px; /* Space between icons */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensure dock is above everything */
+    background-color: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .dock-item {
-    /* Container for each icon link if needed for extra styling */
+    /* Container for each icon link */
 }
 
 .dock-item a {
-    display: block; /* Make the link fill the dock-item */
+    display: block; /* Prevent layout shifts */
 }
 
 .dock-item img {
-    width: 50px; /* Icon width */
-    height: 50px; /* Icon height */
-    display: block; /* Prevents extra space below inline images */
-    transition: transform 0.2s ease; /* Smooth animation for hover */
+    width: 50px;
+    height: 50px;
+    display: block;
+    transition: transform 0.2s ease;
 }
 
 .dock-item:hover img {
-    transform: scale(1.4) translateY(-10px); /* Grow and lift effect */
+    transform: scale(1.4) translateY(-10px);
 }
 
-/* --- Responsive Adjustments (Example) --- */
+/* --- Responsive Adjustments --- */
 @media (max-width: 600px) {
     h1 {
         font-size: 1.8rem;
@@ -122,19 +178,25 @@ h1 {
         font-size: 1.2rem;
     }
     .macos-dock {
-        gap: 10px; /* Reduce gap on smaller screens */
-        padding: 8px 10px; /* Reduce padding */
-        bottom: 10px; /* Closer to edge on mobile */
+        gap: 10px;
+        padding: 8px 10px;
+        bottom: 10px;
     }
     .dock-item img {
-        width: 40px; /* Smaller icons on mobile */
+        width: 40px;
         height: 40px;
     }
     body {
-        /* You might need to adjust padding-bottom if dock height changes significantly */
+        /* Adjust body padding if dock height changes */
          padding-bottom: 80px; /* Example adjustment */
     }
     .video-container {
-        width: 95%; /* Allow slightly more width on mobile */
+        width: 95%;
     }
+    /* Optional: Reduce parallax intensity on mobile if needed */
+    /*
+    .layer-sky { transform: translateZ(-1px) scale(2); }
+    .layer-town { transform: translateZ(-0.5px) scale(1.5); }
+    */
 }
+
