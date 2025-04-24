@@ -2,45 +2,42 @@
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%; /* Needed for full height elements */
+    height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #f5f5f5;
-    background-color: #151515; /* Fallback background */
-    overflow: hidden; /* Prevent scrolling the entire page */
+    background-color: #151515;
+    overflow: hidden; /* Prevent scrolling */
 }
 
 body {
-    /* Padding ensures content isn't hidden *under* the fixed dock */
-    padding-bottom: 100px; /* Adjust if needed based on dock height + desired gap */
-    box-sizing: border-box; /* Include padding in height calculation */
-
-    /* Apply perspective to the body */
-    perspective: 1px; /* Controls parallax intensity */
-    position: relative; /* Needed for absolute children like overlay */
+    padding-bottom: 100px; /* Space for dock */
+    box-sizing: border-box;
+    /* perspective: 1px; */ /* REMOVED perspective from body */
+    /* position: relative; */ /* No longer strictly needed here */
 }
 
 /* --- Parallax Styles --- */
-/* This container is fixed and covers the entire viewport */
+/* Container is now part of the normal flow at the top */
 .parallax-container {
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
     overflow: hidden; /* No scrolling within the parallax container */
-    position: fixed;  /* Fixed position to stay as background */
-    top: 0;
-    left: 0;
-    z-index: 1; /* Position behind overlay and dock */
-    /* Apply transform-style here */
+    position: relative; /* Changed from fixed */
+    z-index: 1; /* Behind overlay and dock */
+
+    /* Apply perspective and transform-style HERE */
+    perspective: 1px;
     transform-style: preserve-3d;
 }
 
-/* Style for the new wrapper divs */
+/* Style for the wrapper divs */
 .layer-wrap {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* Apply transform-style here too, crucial for nesting 3D transforms */
+    /* Apply transform-style here too */
     transform-style: preserve-3d;
 }
 
@@ -69,66 +66,64 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     /* Apply scaling to the LAYER itself */
-    /* The scale compensates for the wrapper's translateZ */
 }
 
 /* Apply background image and scale to the LAYERS */
-/* Ensure image paths are correct (using .png based on previous check) */
 .layer-sky {
     background-image: url('./sky_layer1.png');
-    transform: scale(3); /* Scale = 1 + (translateZ / -perspective) = 1 + (-2 / -1) = 3 */
+    transform: scale(3); /* Scale = 1 + (translateZ / -perspective) */
 }
 
 .layer-town {
     background-image: url('./town_layer2.png');
-    transform: scale(2); /* Scale = 1 + (-1 / -1) = 2 */
+    transform: scale(2);
 }
 
 .layer-hills {
     background-image: url('./hills_layer3.png');
-    transform: scale(1); /* Scale = 1 + (0 / -1) = 1 */
+    transform: scale(1);
 }
 /* --- End Parallax Styles --- */
 
 
-/* --- New Overlay Content Styles --- */
-/* This container holds the text placed over the parallax */
+/* --- Overlay Content Styles --- */
+/* Position this relative to the body/viewport */
 .overlay-content {
-    position: absolute; /* Position relative to the viewport body */
-    top: 35%;          /* Adjust vertical position (e.g., % from top) */
+    position: absolute;
+    top: 35%;
     left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
-    z-index: 10;       /* Ensure it's above parallax layers */
+    transform: translateX(-50%);
+    z-index: 10; /* Above parallax */
     text-align: center;
-    width: 90%;        /* Prevent text from hitting edges */
-    max-width: 800px;  /* Optional max width */
-    pointer-events: none; /* Allow clicks to pass through to dock if needed */
+    width: 90%;
+    max-width: 800px;
+    pointer-events: none;
 }
 
-/* Styles for the text within the overlay */
 .overlay-content h1 {
-    font-size: 2.5rem; /* Adjust size */
+    font-size: 2.5rem;
     text-shadow: 0 3px 6px rgba(0,0,0,0.7);
     margin-bottom: 15px;
-    color: #ffffff; /* Ensure visibility */
+    color: #ffffff;
 }
 
 .overlay-content .tagline {
-    font-size: 1.5rem; /* Adjust size */
+    font-size: 1.5rem;
     font-style: italic;
     text-shadow: 0 2px 4px rgba(0,0,0,0.7);
-    color: #f0f0f0; /* Ensure visibility */
+    color: #f0f0f0;
 }
 /* --- End Overlay Content Styles --- */
 
 
-/* --- macOS Dock Styling (Fixed Position) --- */
+/* --- macOS Dock Styling --- */
+/* Remains fixed */
 .macos-dock {
     position: fixed;
-    bottom: 20px;      /* Space from bottom */
+    bottom: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Centering */
-    z-index: 1000;     /* Ensure dock is above everything */
+    transform: translateX(-50%);
+    z-index: 1000; /* Above everything */
     background-color: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
     padding: 10px 15px;
@@ -141,13 +136,13 @@ body {
 }
 
 .dock-item a {
-    display: block; /* Prevents layout shifts */
+    display: block;
 }
 
 .dock-item img {
     width: 50px;
     height: 50px;
-    display: block; /* Prevents extra space */
+    display: block;
     transition: transform 0.2s ease;
 }
 
@@ -166,7 +161,7 @@ body {
         font-size: 1.2rem;
     }
     .overlay-content {
-        top: 30%; /* Adjust vertical position for mobile */
+        top: 30%;
     }
     .macos-dock {
         gap: 10px;
@@ -178,17 +173,17 @@ body {
         height: 40px;
     }
     body {
-         padding-bottom: 80px; /* Adjust body padding if dock height changes */
-         perspective: 2px; /* Adjust perspective for mobile */
+         padding-bottom: 80px;
+    }
+    /* Adjust perspective on container for mobile */
+    .parallax-container {
+        perspective: 2px;
     }
 
     /* Adjust scales and Z based on new perspective */
-    .layer-sky-wrap { transform: translateZ(-3px); } /* Example adjustment */
-    .layer-town-wrap { transform: translateZ(-1.5px); } /* Example adjustment */
+    .layer-sky-wrap { transform: translateZ(-3px); }
+    .layer-town-wrap { transform: translateZ(-1.5px); }
 
-    /* Recalculate scales based on new perspective and Z */
-    .layer-sky { transform: scale(2.5); } /* Scale = 1 + (-3 / -2) = 2.5 */
-    .layer-town { transform: scale(1.75); } /* Scale = 1 + (-1.5 / -2) = 1.75 */
-    /* Hills layer scale remains 1 as its wrapper Z is 0 */
+    .layer-sky { transform: scale(2.5); }
+    .layer-town { transform: scale(1.75); }
 }
-
