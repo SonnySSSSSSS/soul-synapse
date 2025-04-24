@@ -181,9 +181,9 @@ body {
          padding-bottom: 80px;
     }
     /* Adjust animation speeds if needed for mobile */
-    .layer-sky { animation-duration: 70s; }
-    .layer-town { animation-duration: 50s; }
-    .layer-hills { animation-duration: 35s; }
-    .layer-firefly { animation-duration: 25s; } /* Adjust fastest speed too */
+    .layer-sky { animation-duration: 100s; }
+    .layer-town { animation-duration: 90s; }
+    .layer-hills { animation-duration: 70s; }
+    .layer-firefly { animation-duration: 50s; } /* Adjust fastest speed too */
 }
 
