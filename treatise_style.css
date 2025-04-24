@@ -5,89 +5,95 @@ body, html {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #f5f5f5;
-    background-color: #151515;
+    background-color: #151515; /* Fallback background */
     overflow: hidden; /* Prevent scrolling */
 }
 
 body {
     padding-bottom: 100px; /* Space for dock */
     box-sizing: border-box;
-    /* perspective: 1px; */ /* REMOVED perspective from body */
-    /* position: relative; */ /* No longer strictly needed here */
+    position: relative; /* Needed for absolute positioning of overlay */
 }
 
 /* --- Parallax Styles --- */
-/* Container is now part of the normal flow at the top */
+/* Container is now just a holder, doesn't need perspective */
 .parallax-container {
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
-    overflow: hidden; /* No scrolling within the parallax container */
-    position: relative; /* Changed from fixed */
+    overflow: hidden; /* Crucial to hide overflowing animated backgrounds */
+    position: fixed;  /* Keep it fixed as the background */
+    top: 0;
+    left: 0;
     z-index: 1; /* Behind overlay and dock */
-
-    /* Apply perspective and transform-style HERE */
-    perspective: 1px;
-    transform-style: preserve-3d;
 }
 
-/* Style for the wrapper divs */
+/* Remove styles related to the wrapper divs' 3D transforms */
 .layer-wrap {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    /* Apply transform-style here too */
-    transform-style: preserve-3d;
+    /* No transform-style or translateZ needed here */
 }
 
-/* Apply Z-translation and z-index to the WRAPPERS */
-.layer-sky-wrap {
-    transform: translateZ(-2px);
-    z-index: 1; /* Furthest back */
-}
-.layer-town-wrap {
-    transform: translateZ(-1px);
-    z-index: 2; /* Middle */
-}
-.layer-hills-wrap {
-    transform: translateZ(0px);
-    z-index: 3; /* Closest */
-}
+/* Assign z-index directly to wrappers */
+.layer-sky-wrap { z-index: 1; }
+.layer-town-wrap { z-index: 2; }
+.layer-hills-wrap { z-index: 3; }
 
 /* Base styles for the actual layers INSIDE the wrappers */
 .parallax-layer {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-position: center bottom;
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* Apply scaling to the LAYER itself */
+    /* Make width much larger than screen to allow for scrolling */
+    /* Width should be at least screen width + image width */
+    width: 200%; /* Example: double screen width, adjust as needed */
+    height: 100%;
+    background-position: 0 bottom; /* Start at left edge, align to bottom */
+    background-size: auto 100%; /* Keep aspect ratio, fill height */
+    background-repeat: repeat-x; /* Repeat horizontally */
+
+    /* Add animation */
+    animation: scrollHorizontal linear infinite;
 }
 
-/* Apply background image and scale to the LAYERS */
+/* Apply background image to the LAYERS */
+/* Ensure image paths are correct */
 .layer-sky {
     background-image: url('./sky_layer1.png');
-    transform: scale(3); /* Scale = 1 + (translateZ / -perspective) */
+    /* Slower animation duration = slower speed */
+    animation-duration: 60s; /* Example duration */
 }
 
 .layer-town {
     background-image: url('./town_layer2.png');
-    transform: scale(2);
+    /* Medium animation duration */
+    animation-duration: 40s; /* Example duration */
 }
 
 .layer-hills {
     background-image: url('./hills_layer3.png');
-    transform: scale(1);
+    /* Faster animation duration = faster speed */
+    animation-duration: 25s; /* Example duration */
+}
+
+/* --- Keyframes for Horizontal Scrolling --- */
+@keyframes scrollHorizontal {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move left by exactly half the element's width (since width is 200%) */
+        /* This creates a seamless loop with repeat-x */
+        transform: translateX(-50%);
+    }
 }
 /* --- End Parallax Styles --- */
 
 
 /* --- Overlay Content Styles --- */
-/* Position this relative to the body/viewport */
 .overlay-content {
     position: absolute;
     top: 35%;
@@ -117,7 +123,6 @@ body {
 
 
 /* --- macOS Dock Styling --- */
-/* Remains fixed */
 .macos-dock {
     position: fixed;
     bottom: 20px;
@@ -175,15 +180,9 @@ body {
     body {
          padding-bottom: 80px;
     }
-    /* Adjust perspective on container for mobile */
-    .parallax-container {
-        perspective: 2px;
-    }
-
-    /* Adjust scales and Z based on new perspective */
-    .layer-sky-wrap { transform: translateZ(-3px); }
-    .layer-town-wrap { transform: translateZ(-1.5px); }
-
-    .layer-sky { transform: scale(2.5); }
-    .layer-town { transform: scale(1.75); }
+    /* Adjust animation speeds if needed for mobile */
+    .layer-sky { animation-duration: 70s; }
+    .layer-town { animation-duration: 50s; }
+    .layer-hills { animation-duration: 35s; }
 }
+
