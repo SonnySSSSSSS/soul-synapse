@@ -176,13 +176,13 @@ body {
 #path-prompt {
     position: fixed;
     /* Increased bottom value to move it up (adjust 110px as needed) */
-    bottom: 110px;
+    bottom: 110px; /* MOVED UP */
     left: 50%;
     transform: translateX(-50%);
     z-index: 999; /* Below dock, above parallax/overlay */
     color: #b0b0b0; /* Subdued color */
     /* Increased font size (approx 200% of original 0.9rem) */
-    font-size: 1.8rem;
+    font-size: 1.8rem; /* LARGER */
     font-style: italic;
     text-shadow: 0 1px 2px rgba(0,0,0,0.6);
     pointer-events: none; /* Not interactive */
@@ -194,10 +194,10 @@ body {
 /* --- Responsive Adjustments --- */
 @media (max-width: 600px) {
     .overlay-content h1 {
-        font-size: 2rem; /* Adjusted from previous 4rem which seemed too large */
+        font-size: 2rem;
     }
     .overlay-content .tagline {
-        font-size: 1.2rem; /* Adjusted from previous 2.4rem */
+        font-size: 1.2rem;
     }
     .overlay-content {
         top: 30%;
@@ -216,9 +216,9 @@ body {
     }
     #path-prompt {
         /* Adjust position above smaller dock */
-        bottom: 75px; /* Adjusted from 110px */
+        bottom: 75px; /* MOVED UP */
         /* Adjust size for mobile */
-        font-size: 1.6rem; /* Adjusted from 1.9rem */
+        font-size: 1.6rem; /* LARGER */
     }
     /* Adjust layer animation speeds - SLOWED DOWN */
     .layer-sky { animation-duration: 105s; }
