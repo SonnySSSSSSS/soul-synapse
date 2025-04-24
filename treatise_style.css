@@ -44,27 +44,30 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-position: center bottom; /* Align images */
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* background-position: center bottom; */ /* Not needed for solid colors */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
 }
 
 /* Individual layer styling */
-/* !!! Corrected file extensions from .jpg to .png !!! */
+/* !!! USING COLORS FOR DEBUGGING !!! */
 .layer-sky {
-    background-image: url('./sky_layer1.png'); /* CORRECTED EXTENSION */
+    /* background-image: url('./sky_layer1.png'); */
+    background-color: #0b1026; /* Dark Blue */
     transform: translateZ(-2px) scale(3); /* Furthest back, slowest */
     z-index: 1; /* Layer stacking */
 }
 
 .layer-town {
-    background-image: url('./town_layer2.png'); /* CORRECTED EXTENSION */
+    /* background-image: url('./town_layer2.png'); */
+     background-color: #4a3c5d; /* Muted Purple */
     transform: translateZ(-1px) scale(2); /* Middle */
     z-index: 2; /* Layer stacking */
 }
 
 .layer-hills {
-    background-image: url('./hills_layer3.png'); /* CORRECTED EXTENSION */
+    /* background-image: url('./hills_layer3.png'); */
+     background-color: #1f1f2e; /* Dark Grey/Purple */
     transform: translateZ(0px) scale(1); /* Closest, appears static relative to container */
     z-index: 3; /* Layer stacking */
 }
@@ -83,6 +86,7 @@ body {
     width: 90%;        /* Prevent text from hitting edges */
     max-width: 800px;  /* Optional max width */
     pointer-events: none; /* Allow clicks to pass through to dock if needed */
+    /* background-color: rgba(255, 0, 0, 0.5); */ /* Uncomment for debugging position */
 }
 
 /* Styles for the text within the overlay */
