@@ -51,21 +51,21 @@ body {
 
 .layer-sky {
     /* Check this path: */
-    background-image: url('./sky_layer1.jpg'); /* FURTHEST BACK */
+    background-image: url('./sky_layer1.png'); /* FURTHEST BACK */
     transform: translateZ(-2px) scale(3);
     z-index: 1; /* Stacking order */
 }
 
 .layer-town {
     /* Check this path: */
-    background-image: url('./town_layer2.jpg'); /* MIDDLE */
+    background-image: url('./town_layer2.png'); /* MIDDLE */
     transform: translateZ(-1px) scale(2);
     z-index: 2; /* Stacking order */
 }
 
 .layer-hills {
     /* Check this path: */
-    background-image: url('./hills_layer3.jpg'); /* CLOSEST */
+    background-image: url('./hills_layer3.png'); /* CLOSEST */
     transform: translateZ(0px) scale(1);
     z-index: 3; /* Stacking order */
 }
