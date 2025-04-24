@@ -60,19 +60,18 @@
 }
 
 .macos-dock {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin: 60px auto 0;
+    justify-content: center;
     background-color: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
     padding: 10px 15px;
     border-radius: 20px;
     display: flex;
     gap: 20px;
-    z-index: 1000;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
+
 
 .dock-item img {
     width: 50px;
