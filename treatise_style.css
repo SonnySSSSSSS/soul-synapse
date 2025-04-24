@@ -52,42 +52,59 @@ body {
     background-position: 0 bottom; /* Start at left edge, align to bottom */
     background-size: auto 100%; /* Keep aspect ratio, fill height */
     background-repeat: repeat-x; /* Repeat horizontally */
-    /* Add animation */
+    /* Apply horizontal scroll animation by default */
     animation: scrollHorizontal linear infinite;
 }
 
-/* Apply background image to the LAYERS */
+/* Apply background image and scroll duration to the LAYERS */
 /* Ensure image paths are correct */
 .layer-sky {
     background-image: url('./sky_layer1.png');
-    animation-duration: 60s; /* Slowest */
+    animation-duration: 90s; /* Slowed down */
 }
 
 .layer-town {
     background-image: url('./town_layer2.png');
-    animation-duration: 40s; /* Medium */
+    animation-duration: 60s; /* Slowed down */
 }
 
 .layer-hills {
     background-image: url('./hills_layer3.png');
-    animation-duration: 25s; /* Faster */
+    animation-duration: 38s; /* Slowed down */
 }
 
 /* Firefly Layer Style */
 .layer-firefly {
     background-image: url('./firefly_layer4.png'); /* Check filename */
-    animation-duration: 15s; /* Fastest */
+    /* Apply BOTH animations: scrollHorizontal and pulseOpacity */
+    /* Format: animation-name duration timing-function iteration-count, second-animation ... */
+    animation:
+        scrollHorizontal 23s linear infinite, /* Horizontal scroll (slowed down) */
+        pulseOpacity 3s ease-in-out infinite alternate; /* Opacity pulse */
+
     /* Optional: Adjust background-position if fireflies shouldn't be bottom-aligned */
     /* background-position: 0 0; */ /* Example: Align to top-left */
 }
 
-/* --- Keyframes for Horizontal Scrolling --- */
+/* --- Keyframes Definitions --- */
+
+/* Keyframes for Horizontal Scrolling */
 @keyframes scrollHorizontal {
     0% {
         transform: translateX(0);
     }
     100% {
         transform: translateX(-50%); /* Move left by half the element's width */
+    }
+}
+
+/* NEW Keyframes for Opacity Pulse */
+@keyframes pulseOpacity {
+    0% {
+        opacity: 1; /* Fully visible */
+    }
+    100% {
+        opacity: 0.4; /* Partially transparent */
     }
 }
 /* --- End Parallax Styles --- */
@@ -180,10 +197,16 @@ body {
     body {
          padding-bottom: 80px;
     }
-    /* Adjust animation speeds if needed for mobile */
-    .layer-sky { animation-duration: 100s; }
-    .layer-town { animation-duration: 90s; }
-    .layer-hills { animation-duration: 70s; }
-    .layer-firefly { animation-duration: 50s; } /* Adjust fastest speed too */
+    /* Adjust animation speeds - SLOWED DOWN */
+    .layer-sky { animation-duration: 105s; }
+    .layer-town { animation-duration: 75s; }
+    .layer-hills { animation-duration: 53s; }
+    /* Adjust firefly scroll speed for mobile */
+    .layer-firefly {
+        /* Apply BOTH animations with adjusted scroll duration */
+        animation:
+            scrollHorizontal 38s linear infinite, /* Scroll speed adjusted */
+            pulseOpacity 3s ease-in-out infinite alternate; /* Pulse speed remains same */
+    }
 }
 
