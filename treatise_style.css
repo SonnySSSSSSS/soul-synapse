@@ -20,21 +20,14 @@ body {
 .parallax-container {
     height: 100vh; /* Takes full viewport height initially */
     overflow-x: hidden;
-    overflow-y: auto;   /* Allows this container to scroll internally if needed, but usually body scroll is used */
+    overflow-y: hidden; /* Change to hidden to prevent double scrollbars initially */
     perspective: 1px;   /* Adjust for more/less parallax effect (smaller = more) */
     position: relative; /* Crucial for positioning layers */
-    /* If you want the parallax fixed behind EVERYTHING, uncomment these: */
-    /* position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1; */
 }
 
-/* Wrapper helps manage 3D transforms and total scroll height */
+/* Wrapper helps manage 3D transforms */
 .parallax-wrapper {
-    position: relative; /* Changed from absolute for simpler content flow */
+    position: relative;
     width: 100%;
     height: 100vh; /* Match container height for initial view */
     transform-style: preserve-3d; /* Essential for children's 3D transforms */
@@ -53,23 +46,25 @@ body {
 }
 
 /* Individual layer styling */
-/* Adjust translateZ and scale values to fine-tune the effect */
-/* scale = 1 + (translateZ / -perspective) */
-/* Ensure image paths are correct relative to the CSS file location */
+/* !!! CRITICAL: Ensure these image paths are correct relative to this CSS file !!! */
+/* If images are in an 'img' folder next to index.html, paths might be e.g., url('../img/sky_layer1.jpg') */
 
 .layer-sky {
+    /* Check this path: */
     background-image: url('./sky_layer1.jpg'); /* FURTHEST BACK */
     transform: translateZ(-2px) scale(3);
     z-index: 1; /* Stacking order */
 }
 
 .layer-town {
+    /* Check this path: */
     background-image: url('./town_layer2.jpg'); /* MIDDLE */
     transform: translateZ(-1px) scale(2);
     z-index: 2; /* Stacking order */
 }
 
 .layer-hills {
+    /* Check this path: */
     background-image: url('./hills_layer3.jpg'); /* CLOSEST */
     transform: translateZ(0px) scale(1);
     z-index: 3; /* Stacking order */
@@ -84,7 +79,7 @@ body {
     background-color: #151515; /* Background to cover parallax as it scrolls */
     padding-top: 50px; /* Add some top padding within the content */
     padding-bottom: 50px; /* Add some bottom padding */
-    /* This margin pushes the content below the initial 100vh parallax view */
+    /* !!! CRITICAL: This margin pushes the content below the initial 100vh parallax view !!! */
     margin-top: 100vh;
 }
 
@@ -194,9 +189,11 @@ h1 {
         width: 95%;
     }
     /* Optional: Reduce parallax intensity on mobile if needed */
-    /*
-    .layer-sky { transform: translateZ(-1px) scale(2); }
-    .layer-town { transform: translateZ(-0.5px) scale(1.5); }
-    */
+    .parallax-container {
+        perspective: 2px; /* Less intense effect on mobile */
+    }
+    .layer-sky { transform: translateZ(-3px) scale(2.5); } /* Adjust scale with perspective */
+    .layer-town { transform: translateZ(-1.5px) scale(1.75); }/* Adjust scale with perspective */
+
 }
 
