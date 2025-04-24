@@ -1,4 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
+	
+	// --- START: Interactive Dock Text Code ---
+
+// Make sure this runs after the DOM is loaded.
+// If you ALREADY have a 'DOMContentLoaded' listener in your script.js,
+// put the code INSIDE that existing listener.
+// If not, you can add this wrapper:
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get references to the elements needed for this feature
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayTagline = document.getElementById('overlay-tagline');
+    const dock = document.querySelector('.macos-dock');
+
+    // Check if the necessary elements exist before proceeding
+    if (!overlayTitle || !overlayTagline || !dock) {
+        console.warn("Interactive text elements (overlay title/tagline or dock) not found. Feature disabled.");
+        return; // Stop this specific feature if elements are missing
+    }
+
+    const dockLinks = dock.querySelectorAll('a'); // Select all links within the dock
+
+    if (dockLinks.length === 0) {
+        console.warn("No links found within the dock for interactive text. Feature disabled.");
+        return; // Stop if no links to attach listeners to
+    }
+
+    // Store default text (make sure these elements exist first)
+    const defaultTitle = overlayTitle.textContent;
+    const defaultTagline = overlayTagline.textContent;
+
+    // Add hover listeners to each link in the dock
+    dockLinks.forEach(link => {
+        link.addEventListener('mouseover', (event) => {
+            const title = link.getAttribute('data-title');
+            const tagline = link.getAttribute('data-tagline');
+
+            // Update text only if the attribute exists
+            if (title !== null) { // Check for null explicitly
+                overlayTitle.textContent = title;
+            }
+            if (tagline !== null) { // Check for null explicitly
+                overlayTagline.textContent = tagline;
+            } else {
+                 overlayTagline.textContent = ''; // Clear tagline if attribute is missing
+            }
+        });
+    });
+
+    // Add listener to the dock container to reset text when mouse leaves
+    dock.addEventListener('mouseleave', () => {
+        // Only reset if the elements were found initially
+        if (overlayTitle) {
+             overlayTitle.textContent = defaultTitle;
+        }
+       if (overlayTagline) {
+            overlayTagline.textContent = defaultTagline;
+       }
+    });
+
+    // Optional: Log success for this specific feature
+    console.log("Interactive dock text feature initialized.");
+
+}); // End of the DOMContentLoaded listener (if you added it)
+
+// --- END: Interactive Dock Text Code ---
     // Expand/Collapse Functionality
     const allToggles = document.querySelectorAll('.expand-toggle'); // Define allToggles
 
